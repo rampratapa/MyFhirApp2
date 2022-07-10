@@ -31,7 +31,7 @@
                   });
         
         var encnt = smart.patient.api.fetchAll({
-                    type: 'MedicationRequest'
+                    type: 'Coverage'
                   });
         $.when(pt, obv,encnt).fail(onError);
 
