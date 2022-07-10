@@ -30,12 +30,12 @@
                     }
                   });
         
-        var encnt = smart.patient.api.fetchAll({
+        var covrage = smart.patient.api.fetchAll({
                     type: 'Coverage'
                   });
-        $.when(pt, obv,encnt).fail(onError);
+        $.when(pt, obv,encnt,covrage).fail(onError);
 
-        $.when(pt, obv,encnt).done(function(patient, obv,encnt) {
+        $.when(pt, obv,encnt,covrage).done(function(patient, obv,encnt,covrage) {
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
           var enct = encnt.id;
@@ -62,7 +62,7 @@
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
-
+          Console.log('Coverage Id', covrage.id);
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
           }
@@ -97,6 +97,11 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+      covId: {value: ''},
+      covStatus: {value: ''},
+      covSubId: {value: ''},
+      covStart: {value: ''},
+      covEnd: {value: ''},
       encounter: [{
         id :{value: ''},
         status: {value: ''},
