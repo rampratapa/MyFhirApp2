@@ -62,7 +62,7 @@
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
-          Console.log('Coverage Id', covrage.id);
+          console.log('Coverage Id', covrage.id);
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
           }
