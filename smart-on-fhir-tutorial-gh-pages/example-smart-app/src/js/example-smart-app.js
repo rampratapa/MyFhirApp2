@@ -25,7 +25,7 @@
                     type: 'Encounter',
                      query: {
                       status: {
-                        $or: [patient.id ]
+                        $or: ['cancelled' ]
                       }
                     }
                   });
@@ -34,7 +34,7 @@
                     type: 'Coverage',
                      query: {
                       patient: {
-                        $or: ['cancelled' ]
+                        $or: [patient.id ]
                       }
                     }
                   });
