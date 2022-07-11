@@ -25,13 +25,18 @@
                     type: 'Encounter',
                      query: {
                       status: {
-                        $or: ['cancelled' ]
+                        $or: [patient.id ]
                       }
                     }
                   });
         
         var covrage = smart.patient.api.fetchAll({
-                    type: 'Coverage'
+                    type: 'Coverage',
+                     query: {
+                      patient: {
+                        $or: ['cancelled' ]
+                      }
+                    }
                   });
         $.when(pt, obv,encnt,covrage).fail(onError);
 
