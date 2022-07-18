@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src='http://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+    <script>
+
+      var demo = {
+        serverUrl: "https://launch.smarthealthit.org/v/r4/fhir",
+        patientId: "87a339d0-8cae-418e-89c7-8651e6aab3c6",
+        auth: {
+          type: 'none'
+        }
+      };
+
+      var smart = FHIR.client(demo);
+      console.log(smart);
+
+      /* Create a patient welcome banner */
+      var pq = smart.patient.read();
+      
+      pq.then(function(p) {
+        var name = p.name[0];
+        var formatted = name.given.join(" ") + " " + name.family.join(" ");
+        $("#patient_name").text(formatted);
+      });
+
+      /* Create a medication list */
+      smart.patient.api.search({type: "MedicationOrder", query: {patient: demo.patientId}
+        }).then(function(r){
+            r.data.entry.forEach(function(re) {
+              var rx = re.resource;
+              var row = $("<li> " + rx.medicationCodeableConcept.text + "</li>");
+              $("#med_list").append(row);
+            });
+        });
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Hello <span id="patient_name">...</span>!</h1>
+    <ul id="med_list"></ul>
+
+  </body>
+
+
+</html>
