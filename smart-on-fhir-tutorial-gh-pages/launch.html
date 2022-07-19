@@ -2,7 +2,8 @@
 <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
 <script>
 FHIR.oauth2.authorize({
-    "client_id": "my_web_app",
-    "scope": "patient/*.read"
-});
+        'client_id': 'bb403f7e-8f1c-4612-925c-df9977cb69d4',
+        'scope':  'patient/Patient.read patient/Observation.read patient/Encounter.read launch fhirUser online_access openid profile',
+        'redirect_uri': 'https://rampratapa.github.io/MyFhirApp2/smart-on-fhir-tutorial-gh-pages/example-smart-app/'
+      });
 </script>
